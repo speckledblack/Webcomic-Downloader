@@ -17,7 +17,7 @@ public class Webpage {
 	Webpage(String x) throws MalformedURLException, IOException 
 	{
 		x = sfix(x);
-		//System.out.println(x);
+		
 		html = "";
         BufferedReader br = null;
 
@@ -38,7 +38,9 @@ public class Webpage {
             html = html + sb + '\n';
             //System.out.println(count + " " + sb);
             count++;
-        } finally {
+        }
+        	finally {
+        
 
             if (br != null) 
                 br.close();
@@ -47,34 +49,48 @@ public class Webpage {
         
         //System.out.println(html);
         
+        
     }
 	public void Webpage(String x) throws MalformedURLException, IOException 
 	{
 		html = "";
         BufferedReader br = null;
-        //System.out.println(x);
+        System.out.println(x);
+        //System.out.println(x + " pp");
         x = sfix(x);
-        try {
-
-            url = new URL(x);
-            br = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String line;
-
-            StringBuilder sb = new StringBuilder();
-
-            while ((line = br.readLine()) != null) {
-
-                sb.append(line);
-                sb.append(System.lineSeparator());
-            }
-            html = html + sb + '\n';
-            //System.out.println(sb);
-        } finally {
-
-            if (br != null) 
-                br.close();
-            
+        
+        while(true)
+	        {
+	        try {
+	
+	            url = new URL(x);
+	            br = new BufferedReader(new InputStreamReader(url.openStream()));
+	
+	            String line;
+	
+	            StringBuilder sb = new StringBuilder();
+	
+	            while ((line = br.readLine()) != null) {
+	
+	                sb.append(line);
+	                sb.append(System.lineSeparator());
+	            }
+	            html = html + sb + '\n';
+	            //System.out.println(sb);
+	        }
+	        catch (IOException e) {
+	        	//System.out.println("hh");
+	        	continue;
+	        	
+	        }
+	        	finally {
+	        
+	
+	            if (br != null) 
+	                br.close();
+	            
+	        }
+	        return;
         }
         /*
         FileOutputStream fos = new FileOutputStream("C:\\Users\\1stew\\Documents\\Smbc\\g.txt");
@@ -111,7 +127,8 @@ public class Webpage {
 	}
 	private String sfix(String x)
 	{
-		String y = x.replaceAll(" ", "%20");
+		String y;
+		y = x.replaceAll(" ", "%20");
 		return y;
 		
 	}
